@@ -1,0 +1,87 @@
+
+===== BASELINE RESULTS =====
+T01 | PASS |   574.0 ms | in='Fresh banana'
+      expected: Fruit/Vegetable, Low
+      actual  : Fruit/Vegetable, Low (conf 0.56, laya, needs_review)
+T02 | FAIL |   599.6 ms | in='Fried chicken, 3 pieces'
+      expected: Protein, High
+      actual  : Protein, Medium (conf 0.533, laya, needs_review)
+T03 | FAIL |   601.9 ms | in='Plain white rice, 1 cup'
+      expected: Grains, Medium
+      actual  : Grains, Low (conf 0.515, laya, needs_review)
+T04 | PASS |     0.0 ms | in=''
+      expected: REJECTED: Invalid input
+      actual  : REJECTED: Invalid input
+T05 | PASS |   560.4 ms | in='   FRESH APPLE   '
+      expected: Fruit/Vegetable, Low
+      actual  : Fruit/Vegetable, Low (conf 0.603, laya)
+T06 | PASS |   528.6 ms | in='Water'
+      expected: Beverage, Low
+      actual  : Beverage, Low (conf 0.648, laya)
+T07 | PASS |     0.0 ms | in='Fried chicken, 3 pieces'
+      expected: Protein, High
+      actual  : Protein, High (conf 0.0, fallback)
+T08 | PASS |     0.0 ms | in='Plain white rice, 1 cup'
+      expected: Unknown, Unknown
+      actual  : Unknown, Unknown (conf 0.0, fallback, needs_review)
+T09 | FAIL |   547.2 ms | in='Smoothie'
+      expected: Beverage, Medium
+      actual  : Beverage, Low (conf 0.679, laya)
+T10 | FAIL |   624.4 ms | in='Peanut butter on toast'
+      expected: Grains, Medium
+      actual  : Dairy, Low (conf 0.354, laya, needs_review)
+Accuracy: 6 / 10 = 60%
+p95 latency (all 50 timings): 703.2 ms
+p95 latency (model cases only): 717.6 ms
+Review-flag behaviour as expected: 6 / 10
+
+===== IMPROVED RESULTS =====
+T01 | PASS |   854.3 ms | in='Fresh banana'
+      expected: Fruit/Vegetable, Low
+      actual  : Fruit/Vegetable, Low (conf 0.717, laya)  context=['K01']
+T02 | PASS |   943.5 ms | in='Fried chicken, 3 pieces'
+      expected: Protein, High
+      actual  : Protein, High (conf 0.789, laya)  context=['K05']
+T03 | PASS |   958.3 ms | in='Plain white rice, 1 cup'
+      expected: Grains, Medium
+      actual  : Grains, Medium (conf 0.642, laya)  context=['K03']
+T04 | PASS |     0.0 ms | in=''
+      expected: REJECTED: Invalid input
+      actual  : REJECTED: Invalid input
+T05 | PASS |  1130.3 ms | in='   FRESH APPLE   '
+      expected: Fruit/Vegetable, Low
+      actual  : Fruit/Vegetable, Low (conf 0.694, laya)  context=['K01']
+T06 | PASS |  1087.0 ms | in='Water'
+      expected: Beverage, Low
+      actual  : Beverage, Low (conf 0.802, laya)  context=['K08']
+T07 | PASS |     0.0 ms | in='Fried chicken, 3 pieces'
+      expected: Protein, High
+      actual  : Protein, High (conf 0.0, fallback)
+T08 | PASS |     0.0 ms | in='Plain white rice, 1 cup'
+      expected: Unknown, Unknown
+      actual  : Unknown, Unknown (conf 0.0, fallback, needs_review)
+T09 | PASS |  1135.1 ms | in='Smoothie'
+      expected: Beverage, Medium
+      actual  : Beverage, Medium (conf 0.541, laya, needs_review)  context=['K09']
+T10 | FAIL |  1180.6 ms | in='Peanut butter on toast'
+      expected: Grains, Medium
+      actual  : Grains, Low (conf 0.471, laya, needs_review)  context=['K04', 'K11']
+Accuracy: 9 / 10 = 90%
+p95 latency (all 50 timings): 1253.4 ms
+p95 latency (model cases only): 1293.0 ms
+Review-flag behaviour as expected: 10 / 10
+
+===== BEFORE / AFTER =====
+Accuracy      : 60% -> 90%  (+30 points)
+p95 latency   : 703.2 ms -> 1253.4 ms  (+550.2 ms)
+Cost per task : N/A API fee. Laya runs locally, so $0.00 per request (computer power not measured).
+T01: PASS -> PASS  [same]
+T02: FAIL -> PASS  [IMPROVED]
+T03: FAIL -> PASS  [IMPROVED]
+T04: PASS -> PASS  [same]
+T05: PASS -> PASS  [same]
+T06: PASS -> PASS  [same]
+T07: PASS -> PASS  [same]
+T08: PASS -> PASS  [same]
+T09: FAIL -> PASS  [IMPROVED]
+T10: FAIL -> FAIL  [same]

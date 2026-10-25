@@ -1,0 +1,281 @@
+{
+  "summary": {
+    "label": "improved",
+    "correct": 9,
+    "total": 10,
+    "accuracy_pct": 90.0,
+    "review_correct": 10,
+    "p95_ms_all": 1253.4,
+    "p95_ms_model_cases": 1293.0,
+    "median_ms_all": 935.4,
+    "timings": 50
+  },
+  "cases": [
+    {
+      "id": "T01",
+      "case_type": "Normal",
+      "input": "Fresh banana",
+      "expected": "Fruit/Vegetable, Low",
+      "actual": "Fruit/Vegetable, Low (conf 0.717, laya)",
+      "raw_result": {
+        "food_type": "Fruit/Vegetable",
+        "calorie_level": "Low",
+        "confidence": 0.717,
+        "source": "laya"
+      },
+      "pass": true,
+      "review_ok": true,
+      "median_ms": 854.3,
+      "all_ms": [
+        828.6,
+        905.7,
+        847.2,
+        854.3,
+        920.6
+      ],
+      "same_result_all_runs": true,
+      "context_records": [
+        "K01"
+      ]
+    },
+    {
+      "id": "T02",
+      "case_type": "Normal",
+      "input": "Fried chicken, 3 pieces",
+      "expected": "Protein, High",
+      "actual": "Protein, High (conf 0.789, laya)",
+      "raw_result": {
+        "food_type": "Protein",
+        "calorie_level": "High",
+        "confidence": 0.789,
+        "source": "laya"
+      },
+      "pass": true,
+      "review_ok": true,
+      "median_ms": 943.5,
+      "all_ms": [
+        894.6,
+        1071.2,
+        967.9,
+        943.5,
+        894.3
+      ],
+      "same_result_all_runs": true,
+      "context_records": [
+        "K05"
+      ]
+    },
+    {
+      "id": "T03",
+      "case_type": "Normal",
+      "input": "Plain white rice, 1 cup",
+      "expected": "Grains, Medium",
+      "actual": "Grains, Medium (conf 0.642, laya)",
+      "raw_result": {
+        "food_type": "Grains",
+        "calorie_level": "Medium",
+        "confidence": 0.642,
+        "source": "laya"
+      },
+      "pass": true,
+      "review_ok": true,
+      "median_ms": 958.3,
+      "all_ms": [
+        918.4,
+        913.6,
+        958.3,
+        1125.2,
+        988.1
+      ],
+      "same_result_all_runs": true,
+      "context_records": [
+        "K03"
+      ]
+    },
+    {
+      "id": "T04",
+      "case_type": "Edge",
+      "input": "",
+      "expected": "REJECTED: Invalid input",
+      "actual": "REJECTED: Invalid input",
+      "raw_result": {
+        "error": "Invalid input",
+        "source": "validation"
+      },
+      "pass": true,
+      "review_ok": true,
+      "median_ms": 0.0,
+      "all_ms": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "same_result_all_runs": true,
+      "context_records": []
+    },
+    {
+      "id": "T05",
+      "case_type": "Edge",
+      "input": "   FRESH APPLE   ",
+      "expected": "Fruit/Vegetable, Low",
+      "actual": "Fruit/Vegetable, Low (conf 0.694, laya)",
+      "raw_result": {
+        "food_type": "Fruit/Vegetable",
+        "calorie_level": "Low",
+        "confidence": 0.694,
+        "source": "laya"
+      },
+      "pass": true,
+      "review_ok": true,
+      "median_ms": 1130.3,
+      "all_ms": [
+        927.2,
+        966.5,
+        1130.3,
+        1144.0,
+        1240.3
+      ],
+      "same_result_all_runs": true,
+      "context_records": [
+        "K01"
+      ]
+    },
+    {
+      "id": "T06",
+      "case_type": "Edge",
+      "input": "Water",
+      "expected": "Beverage, Low",
+      "actual": "Beverage, Low (conf 0.802, laya)",
+      "raw_result": {
+        "food_type": "Beverage",
+        "calorie_level": "Low",
+        "confidence": 0.802,
+        "source": "laya"
+      },
+      "pass": true,
+      "review_ok": true,
+      "median_ms": 1087.0,
+      "all_ms": [
+        1253.4,
+        1024.3,
+        1096.9,
+        1063.6,
+        1087.0
+      ],
+      "same_result_all_runs": true,
+      "context_records": [
+        "K08"
+      ]
+    },
+    {
+      "id": "T07",
+      "case_type": "Fallback",
+      "input": "Fried chicken, 3 pieces",
+      "expected": "Protein, High",
+      "actual": "Protein, High (conf 0.0, fallback)",
+      "raw_result": {
+        "food_type": "Protein",
+        "calorie_level": "High",
+        "confidence": 0.0,
+        "source": "fallback"
+      },
+      "pass": true,
+      "review_ok": true,
+      "median_ms": 0.0,
+      "all_ms": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "same_result_all_runs": true,
+      "context_records": []
+    },
+    {
+      "id": "T08",
+      "case_type": "Fallback",
+      "input": "Plain white rice, 1 cup",
+      "expected": "Unknown, Unknown",
+      "actual": "Unknown, Unknown (conf 0.0, fallback, needs_review)",
+      "raw_result": {
+        "food_type": "Unknown",
+        "calorie_level": "Unknown",
+        "confidence": 0.0,
+        "source": "fallback",
+        "needs_review": true
+      },
+      "pass": true,
+      "review_ok": true,
+      "median_ms": 0.0,
+      "all_ms": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "same_result_all_runs": true,
+      "context_records": []
+    },
+    {
+      "id": "T09",
+      "case_type": "Difficult",
+      "input": "Smoothie",
+      "expected": "Beverage, Medium",
+      "actual": "Beverage, Medium (conf 0.541, laya, needs_review)",
+      "raw_result": {
+        "food_type": "Beverage",
+        "calorie_level": "Medium",
+        "confidence": 0.541,
+        "source": "laya",
+        "needs_review": true
+      },
+      "pass": true,
+      "review_ok": true,
+      "median_ms": 1135.1,
+      "all_ms": [
+        1135.1,
+        1138.8,
+        1051.5,
+        973.7,
+        1137.0
+      ],
+      "same_result_all_runs": true,
+      "context_records": [
+        "K09"
+      ]
+    },
+    {
+      "id": "T10",
+      "case_type": "Difficult",
+      "input": "Peanut butter on toast",
+      "expected": "Grains, Medium",
+      "actual": "Grains, Low (conf 0.471, laya, needs_review)",
+      "raw_result": {
+        "food_type": "Grains",
+        "calorie_level": "Low",
+        "confidence": 0.471,
+        "source": "laya",
+        "needs_review": true
+      },
+      "pass": false,
+      "review_ok": true,
+      "median_ms": 1180.6,
+      "all_ms": [
+        1293.0,
+        1314.7,
+        1180.6,
+        1165.4,
+        1172.6
+      ],
+      "same_result_all_runs": true,
+      "context_records": [
+        "K04",
+        "K11"
+      ]
+    }
+  ]
+}

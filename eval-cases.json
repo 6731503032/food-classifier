@@ -1,0 +1,82 @@
+{
+  "project": "Food Item Classifier (A6 capability), evaluated in A7",
+  "note": "Expected results were written BEFORE running any evaluation. Do not edit them after testing.",
+  "scoring_rules": {
+    "model case": "PASS if food_type AND calorie_level both equal the expected values and source is 'laya'.",
+    "fallback case": "PASS if source is 'fallback' AND food_type and calorie_level equal the expected values.",
+    "reject case": "PASS if the result is the 'Invalid input' error and the model is not used.",
+    "review flag": "Checked separately (needs_review compared with expected_review); not part of accuracy."
+  },
+  "cases": [
+    {
+      "case_id": "T01", "case_type": "Normal",
+      "input": "Fresh banana", "simulate_failure": false, "expected_behavior": "model",
+      "expected_food_type": "Fruit/Vegetable", "expected_calorie_level": "Low", "expected_review": false,
+      "expected_fallback_or_review": "None: clear case, no review needed",
+      "reason": "A banana is a fruit with about 100 calories, which is Low (under 150)."
+    },
+    {
+      "case_id": "T02", "case_type": "Normal",
+      "input": "Fried chicken, 3 pieces", "simulate_failure": false, "expected_behavior": "model",
+      "expected_food_type": "Protein", "expected_calorie_level": "High", "expected_review": false,
+      "expected_fallback_or_review": "None: clear case, no review needed",
+      "reason": "Chicken is Protein, and three fried pieces are well over 400 calories, which is High."
+    },
+    {
+      "case_id": "T03", "case_type": "Normal",
+      "input": "Plain white rice, 1 cup", "simulate_failure": false, "expected_behavior": "model",
+      "expected_food_type": "Grains", "expected_calorie_level": "Medium", "expected_review": false,
+      "expected_fallback_or_review": "None: clear case, no review needed",
+      "reason": "Rice is a grain, and one cooked cup is about 200 calories, which is Medium (150 to 400)."
+    },
+    {
+      "case_id": "T04", "case_type": "Edge",
+      "input": "", "simulate_failure": false, "expected_behavior": "reject",
+      "expected_food_type": null, "expected_calorie_level": null, "expected_review": false,
+      "expected_fallback_or_review": "Rejected by input validation before the model is called",
+      "reason": "Empty text has no food to classify, so validation must reject it."
+    },
+    {
+      "case_id": "T05", "case_type": "Edge",
+      "input": "   FRESH APPLE   ", "simulate_failure": false, "expected_behavior": "model",
+      "expected_food_type": "Fruit/Vegetable", "expected_calorie_level": "Low", "expected_review": false,
+      "expected_fallback_or_review": "None: extra spaces and capital letters should not change the decision",
+      "reason": "Same food as a normal apple (about 95 calories, Low), only the formatting is unusual."
+    },
+    {
+      "case_id": "T06", "case_type": "Edge",
+      "input": "Water", "simulate_failure": false, "expected_behavior": "model",
+      "expected_food_type": "Beverage", "expected_calorie_level": "Low", "expected_review": false,
+      "expected_fallback_or_review": "None: very short input, but the answer is certain",
+      "reason": "Water is a drink with zero calories, so Low. Tests a one-word input."
+    },
+    {
+      "case_id": "T07", "case_type": "Fallback",
+      "input": "Fried chicken, 3 pieces", "simulate_failure": true, "expected_behavior": "fallback",
+      "expected_food_type": "Protein", "expected_calorie_level": "High", "expected_review": false,
+      "expected_fallback_or_review": "Model outage: keyword rule for 'fried' returns the result, source = fallback",
+      "reason": "The fallback rules contain the keyword 'fried', which maps to Protein, High."
+    },
+    {
+      "case_id": "T08", "case_type": "Fallback",
+      "input": "Plain white rice, 1 cup", "simulate_failure": true, "expected_behavior": "fallback",
+      "expected_food_type": "Unknown", "expected_calorie_level": "Unknown", "expected_review": true,
+      "expected_fallback_or_review": "Model outage and no keyword matches: Unknown + needs_review (manual review queue)",
+      "reason": "None of the fallback keywords match 'rice', so the safe result is Unknown with review."
+    },
+    {
+      "case_id": "T09", "case_type": "Difficult",
+      "input": "Smoothie", "simulate_failure": false, "expected_behavior": "model",
+      "expected_food_type": "Beverage", "expected_calorie_level": "Medium", "expected_review": true,
+      "expected_fallback_or_review": "Should be flagged needs_review (low confidence)",
+      "reason": "Clearly a Beverage, but calories depend on ingredients and size (about 150 to 400), so Medium with review."
+    },
+    {
+      "case_id": "T10", "case_type": "Difficult",
+      "input": "Peanut butter on toast", "simulate_failure": false, "expected_behavior": "model",
+      "expected_food_type": "Grains", "expected_calorie_level": "Medium", "expected_review": true,
+      "expected_fallback_or_review": "Should be flagged needs_review (type is ambiguous: bread vs peanut butter)",
+      "reason": "Bread is the main part (Grains) but peanut butter is a protein food. Total is about 300 calories, which is Medium."
+    }
+  ]
+}

@@ -1,0 +1,268 @@
+{
+  "summary": {
+    "label": "baseline",
+    "correct": 6,
+    "total": 10,
+    "accuracy_pct": 60.0,
+    "review_correct": 6,
+    "p95_ms_all": 703.2,
+    "p95_ms_model_cases": 717.6,
+    "median_ms_all": 553.8,
+    "timings": 50
+  },
+  "cases": [
+    {
+      "id": "T01",
+      "case_type": "Normal",
+      "input": "Fresh banana",
+      "expected": "Fruit/Vegetable, Low",
+      "actual": "Fruit/Vegetable, Low (conf 0.56, laya, needs_review)",
+      "raw_result": {
+        "food_type": "Fruit/Vegetable",
+        "calorie_level": "Low",
+        "confidence": 0.56,
+        "source": "laya",
+        "needs_review": true
+      },
+      "pass": true,
+      "review_ok": false,
+      "median_ms": 574.0,
+      "all_ms": [
+        633.1,
+        574.0,
+        577.3,
+        558.3,
+        570.6
+      ],
+      "same_result_all_runs": true,
+      "context_records": []
+    },
+    {
+      "id": "T02",
+      "case_type": "Normal",
+      "input": "Fried chicken, 3 pieces",
+      "expected": "Protein, High",
+      "actual": "Protein, Medium (conf 0.533, laya, needs_review)",
+      "raw_result": {
+        "food_type": "Protein",
+        "calorie_level": "Medium",
+        "confidence": 0.533,
+        "source": "laya",
+        "needs_review": true
+      },
+      "pass": false,
+      "review_ok": false,
+      "median_ms": 599.6,
+      "all_ms": [
+        644.2,
+        592.8,
+        750.5,
+        599.6,
+        596.6
+      ],
+      "same_result_all_runs": true,
+      "context_records": []
+    },
+    {
+      "id": "T03",
+      "case_type": "Normal",
+      "input": "Plain white rice, 1 cup",
+      "expected": "Grains, Medium",
+      "actual": "Grains, Low (conf 0.515, laya, needs_review)",
+      "raw_result": {
+        "food_type": "Grains",
+        "calorie_level": "Low",
+        "confidence": 0.515,
+        "source": "laya",
+        "needs_review": true
+      },
+      "pass": false,
+      "review_ok": false,
+      "median_ms": 601.9,
+      "all_ms": [
+        717.6,
+        703.2,
+        581.9,
+        601.9,
+        591.9
+      ],
+      "same_result_all_runs": true,
+      "context_records": []
+    },
+    {
+      "id": "T04",
+      "case_type": "Edge",
+      "input": "",
+      "expected": "REJECTED: Invalid input",
+      "actual": "REJECTED: Invalid input",
+      "raw_result": {
+        "error": "Invalid input",
+        "source": "validation"
+      },
+      "pass": true,
+      "review_ok": true,
+      "median_ms": 0.0,
+      "all_ms": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "same_result_all_runs": true,
+      "context_records": []
+    },
+    {
+      "id": "T05",
+      "case_type": "Edge",
+      "input": "   FRESH APPLE   ",
+      "expected": "Fruit/Vegetable, Low",
+      "actual": "Fruit/Vegetable, Low (conf 0.603, laya)",
+      "raw_result": {
+        "food_type": "Fruit/Vegetable",
+        "calorie_level": "Low",
+        "confidence": 0.603,
+        "source": "laya"
+      },
+      "pass": true,
+      "review_ok": true,
+      "median_ms": 560.4,
+      "all_ms": [
+        535.0,
+        572.1,
+        556.7,
+        560.4,
+        560.6
+      ],
+      "same_result_all_runs": true,
+      "context_records": []
+    },
+    {
+      "id": "T06",
+      "case_type": "Edge",
+      "input": "Water",
+      "expected": "Beverage, Low",
+      "actual": "Beverage, Low (conf 0.648, laya)",
+      "raw_result": {
+        "food_type": "Beverage",
+        "calorie_level": "Low",
+        "confidence": 0.648,
+        "source": "laya"
+      },
+      "pass": true,
+      "review_ok": true,
+      "median_ms": 528.6,
+      "all_ms": [
+        527.8,
+        528.6,
+        523.5,
+        535.6,
+        538.0
+      ],
+      "same_result_all_runs": true,
+      "context_records": []
+    },
+    {
+      "id": "T07",
+      "case_type": "Fallback",
+      "input": "Fried chicken, 3 pieces",
+      "expected": "Protein, High",
+      "actual": "Protein, High (conf 0.0, fallback)",
+      "raw_result": {
+        "food_type": "Protein",
+        "calorie_level": "High",
+        "confidence": 0.0,
+        "source": "fallback"
+      },
+      "pass": true,
+      "review_ok": true,
+      "median_ms": 0.0,
+      "all_ms": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "same_result_all_runs": true,
+      "context_records": []
+    },
+    {
+      "id": "T08",
+      "case_type": "Fallback",
+      "input": "Plain white rice, 1 cup",
+      "expected": "Unknown, Unknown",
+      "actual": "Unknown, Unknown (conf 0.0, fallback, needs_review)",
+      "raw_result": {
+        "food_type": "Unknown",
+        "calorie_level": "Unknown",
+        "confidence": 0.0,
+        "source": "fallback",
+        "needs_review": true
+      },
+      "pass": true,
+      "review_ok": true,
+      "median_ms": 0.0,
+      "all_ms": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "same_result_all_runs": true,
+      "context_records": []
+    },
+    {
+      "id": "T09",
+      "case_type": "Difficult",
+      "input": "Smoothie",
+      "expected": "Beverage, Medium",
+      "actual": "Beverage, Low (conf 0.679, laya)",
+      "raw_result": {
+        "food_type": "Beverage",
+        "calorie_level": "Low",
+        "confidence": 0.679,
+        "source": "laya"
+      },
+      "pass": false,
+      "review_ok": false,
+      "median_ms": 547.2,
+      "all_ms": [
+        534.6,
+        547.2,
+        540.9,
+        551.0,
+        668.1
+      ],
+      "same_result_all_runs": true,
+      "context_records": []
+    },
+    {
+      "id": "T10",
+      "case_type": "Difficult",
+      "input": "Peanut butter on toast",
+      "expected": "Grains, Medium",
+      "actual": "Dairy, Low (conf 0.354, laya, needs_review)",
+      "raw_result": {
+        "food_type": "Dairy",
+        "calorie_level": "Low",
+        "confidence": 0.354,
+        "source": "laya",
+        "needs_review": true
+      },
+      "pass": false,
+      "review_ok": true,
+      "median_ms": 624.4,
+      "all_ms": [
+        651.0,
+        624.4,
+        589.9,
+        592.3,
+        652.9
+      ],
+      "same_result_all_runs": true,
+      "context_records": []
+    }
+  ]
+}
